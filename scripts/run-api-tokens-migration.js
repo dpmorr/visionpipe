@@ -13,7 +13,7 @@ const migrationSQL = fs.readFileSync(migrationPath, 'utf8');
 
 // Create a connection pool with the correct database URL
 const pool = new Pool({
-  connectionString: "postgresql://neondb_owner:L8pg2iMFVdBf@ep-floral-voice-a5gqtm2b.us-east-2.aws.neon.tech/neondb?sslmode=require"
+  connectionString: process.env.DATABASE_URL
 });
 
 async function runMigration() {

@@ -12,7 +12,7 @@ const migrationPath = path.join(__dirname, '../migrations/add_waste_audits_table
 const migrationSQL = fs.readFileSync(migrationPath, 'utf8');
 
 // Use DATABASE_URL from env, or fallback to the same as run-api-tokens-migration.js
-const connectionString = process.env.DATABASE_URL || "postgresql://neondb_owner:L8pg2iMFVdBf@ep-floral-voice-a5gqtm2b.us-east-2.aws.neon.tech/neondb?sslmode=require";
+const connectionString = process.env.DATABASE_URL;
 
 const pool = new Pool({
   connectionString

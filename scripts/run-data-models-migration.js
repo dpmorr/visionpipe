@@ -12,7 +12,7 @@ const migrationPath = path.join(__dirname, '../db/migrations/0003_add_data_model
 const migrationSQL = fs.readFileSync(migrationPath, 'utf8');
 
 // Use DATABASE_URL from env, or fallback to your default
-const connectionString = process.env.DATABASE_URL || "postgresql://neondb_owner:L8pg2iMFVdBf@ep-floral-voice-a5gqtm2b.us-east-2.aws.neon.tech/neondb?sslmode=require";
+const connectionString = process.env.DATABASE_URL;
 
 const pool = new Pool({
   connectionString

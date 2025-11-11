@@ -10,7 +10,7 @@ const __dirname = path.dirname(__filename);
 const migrationPath = path.join(__dirname, '../db/migrations/0004_add_builder_config_to_data_models.sql');
 const migrationSQL = fs.readFileSync(migrationPath, 'utf8');
 
-const connectionString = process.env.DATABASE_URL || "postgresql://neondb_owner:L8pg2iMFVdBf@ep-floral-voice-a5gqtm2b.us-east-2.aws.neon.tech/neondb?sslmode=require";
+const connectionString = process.env.DATABASE_URL;
 
 const pool = new Pool({ connectionString });
 
