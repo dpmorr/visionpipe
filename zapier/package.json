@@ -1,0 +1,21 @@
+{
+  "name": "wastetraq-zapier",
+  "version": "1.0.0",
+  "description": "wastetraq Sustainability Platform Zapier Integration",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "validate": "zapier validate",
+    "deploy": "zapier push",
+    "build": "zapier build",
+    "watch": "zapier watch"
+  },
+  "dependencies": {
+    "zapier-platform-core": "12.0.3"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "zapier-platform-cli": "^12.0.3"
+  },
+  "private": true
+}

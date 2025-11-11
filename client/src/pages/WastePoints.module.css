@@ -1,0 +1,27 @@
+.wastePointsPage {
+  padding: 0 !important;
+}
+
+.wastePointsPage > div {
+  padding: 0 !important;
+}
+
+.wastePointsPage > div > div {
+  padding: 0 !important;
+}
+
+/* Target the root container */
+:global(.MuiBox-root) {
+  padding: 0 !important;
+}
+
+/* Target the header box specifically */
+.wastePointsHeader {
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+/* Target the exact MuiBox-root css-vjedb6 class combination */
+:global(.MuiBox-root.css-vjedb6) {
+  padding: 0 !important;
+} 

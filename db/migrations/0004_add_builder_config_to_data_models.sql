@@ -1,0 +1,1 @@
+ALTER TABLE data_models ADD COLUMN builder_config JSONB; 

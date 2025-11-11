@@ -1,0 +1,203 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply font-sans antialiased bg-background text-foreground;
+  }
+}
+
+/* Big Calendar Overrides */
+.rbc-calendar {
+  @apply font-sans;
+}
+
+.rbc-toolbar {
+  @apply mb-4;
+}
+
+.rbc-toolbar button {
+  @apply bg-white border border-gray-200 text-gray-700 px-3 py-1.5 rounded-md text-sm font-medium transition-colors;
+}
+
+.rbc-toolbar button:hover {
+  @apply bg-gray-50;
+}
+
+.rbc-toolbar button.rbc-active {
+  @apply bg-blue-50 border-blue-200 text-blue-700;
+}
+
+.rbc-header {
+  @apply bg-gray-50 py-2 font-medium text-gray-700 text-sm border-gray-200;
+}
+
+.rbc-today {
+  @apply bg-blue-50;
+}
+
+.rbc-event {
+  @apply rounded-md shadow-sm border-none;
+}
+
+.rbc-event.rbc-selected {
+  @apply ring-2 ring-blue-400 ring-offset-2;
+}
+
+.rbc-event-content {
+  @apply font-medium;
+}
+
+.rbc-event-label {
+  @apply text-xs;
+}
+
+.rbc-off-range-bg {
+  @apply bg-gray-50;
+}
+
+.rbc-date-cell {
+  @apply text-sm text-gray-600;
+}
+
+.rbc-show-more {
+  @apply text-sm text-blue-600 hover:text-blue-700;
+}
+
+.rbc-month-view, .rbc-time-view, .rbc-agenda-view {
+  @apply border border-gray-200 rounded-lg shadow-sm bg-white;
+}
+
+.rbc-day-bg + .rbc-day-bg {
+  @apply border-gray-200;
+}
+
+.rbc-month-row + .rbc-month-row {
+  @apply border-gray-200;
+}
+
+.rbc-timeslot-group {
+  @apply border-gray-200;
+}
+
+.rbc-time-header-content {
+  @apply border-gray-200;
+}
+
+.rbc-time-content {
+  @apply border-gray-200;
+}
+
+.rbc-time-header.rbc-overflowing {
+  @apply border-gray-200;
+}
+
+/* Gantt Chart Styles */
+.gantt-chart {
+  @apply bg-white rounded-lg shadow-sm;
+}
+
+.gantt-task {
+  @apply relative rounded-sm shadow-sm transition-all;
+}
+
+.gantt-task-planning {
+  @apply bg-blue-50 hover:bg-blue-100 transition-colors;
+}
+
+.gantt-task-active {
+  @apply bg-blue-50 hover:bg-blue-100 transition-colors;
+}
+
+.gantt-task-completed {
+  @apply bg-blue-50 hover:bg-blue-100 transition-colors;
+}
+
+.gantt-task-cancelled {
+  @apply bg-blue-50 hover:bg-blue-100 transition-colors;
+}
+
+.bg-planning {
+  @apply bg-yellow-100 text-yellow-800;
+}
+
+.bg-active {
+  @apply bg-green-100 text-green-800;
+}
+
+.bg-completed {
+  @apply bg-blue-100 text-blue-800;
+}
+
+.bg-cancelled {
+  @apply bg-red-100 text-red-800;
+}
+
+.timeline-header {
+  @apply bg-gray-50 border-b text-sm font-medium text-gray-600;
+}
+
+.timeline-grid {
+  @apply border-gray-200;
+}
+
+.timeline-today {
+  @apply bg-blue-50;
+}
+
+.timeline-weekend {
+  @apply bg-gray-50;
+}
+
+#root > div.min-h-screen.flex.items-center.justify-center.bg-gradient-to-br.from-gray-50.to-gray-100.p-4 > div > div.flex.flex-col.p-6.space-y-2.text-center > div > a > a > div > img {
+  scale: 3.5;
+}
+
+.to-gray-100 {
+  background: #225879;
+}
+
+#root > div.ant-layout.ant-layout-has-sider.css-dev-only-do-not-override-77tu7h > aside > div > div.flex.items-center.justify-center.p-4.h-24.bg-background > a > a {
+  zoom: 2;
+  margin: -13px -13px -15px -15px;
+}
+
+#root > div.ant-layout.ant-layout-has-sider.css-dev-only-do-not-override-77tu7h > div > main > div > div.ant-list.ant-list-split.ant-list-grid.css-dev-only-do-not-override-77tu7h > div > div > div > div:nth-child(n) > div > div > div > div > div > div:nth-child(1) > div > div:nth-child(1) > div > div:nth-child(1) > span > img {
+  object-fit: contain !important;
+}
+
+#root > div > div > div > div > div.MuiBox-root.css-1fm32i4 {
+  padding: 5px !important;
+}
+
+.css-1fm32i4 {
+  padding: 5px !important;
+  min-height: 50px !important;
+}
+
+.css-vjedb6:not(.home-page) {
+  padding: 0px !important;
+}
+
+.css-19n8dai {
+  padding-left: 24px !important;
+  padding-right: 24px !important;
+}
+
+.css-n4y85v, .css-11cfnx9 {
+  padding: 0px !important;
+}
+
+/* Override padding for waste flow page */
+.waste-flow-page {
+  padding: 0 !important;
+}
+
+#optimization-tabpanel-0 > div > div > div {
+  height: 91vh !important;
+}
