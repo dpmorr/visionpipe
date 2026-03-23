@@ -13,22 +13,22 @@ async function hashPassword(password: string): Promise<string> {
 }
 
 async function seed() {
-  console.log("Seeding test user...");
+  console.log("Seeding user...");
 
   // Check if org exists
   let org = await db.query.organizations.findFirst({
-    where: eq(organizations.slug, "wastetraq-demo"),
+    where: eq(organizations.slug, "wastetraq"),
   });
 
   if (!org) {
     const [newOrg] = await db
       .insert(organizations)
       .values({
-        name: "WasteTraq Demo",
-        slug: "wastetraq-demo",
+        name: "WasteTraq",
+        slug: "wastetraq",
         plan: "starter",
         maxUsers: 5,
-        billingEmail: "test@wastetraq.com",
+        billingEmail: "dmorrissy5@gmail.com",
       })
       .returning();
     org = newOrg;
@@ -39,33 +39,33 @@ async function seed() {
 
   // Check if user exists
   const existingUser = await db.query.users.findFirst({
-    where: eq(users.email, "test@wastetraq.com"),
+    where: eq(users.email, "dmorrissy5@gmail.com"),
   });
 
   if (existingUser) {
-    console.log("Test user already exists:", existingUser.email);
+    console.log("User already exists:", existingUser.email);
   } else {
-    const hashedPassword = await hashPassword("Test1234!");
+    const hashedPassword = await hashPassword("snowboardX5!");
     const [user] = await db
       .insert(users)
       .values({
-        email: "test@wastetraq.com",
+        email: "dmorrissy5@gmail.com",
         password: hashedPassword,
-        firstName: "Test",
-        lastName: "User",
+        firstName: "Daniel",
+        lastName: "Morrissy",
         role: "admin",
         organizationId: org.id,
         organizationRole: "owner",
         userType: "full",
       })
       .returning();
-    console.log("Created test user:", user.email);
+    console.log("Created user:", user.email);
   }
 
-  console.log("\n--- Test Credentials ---");
-  console.log("Email: test@wastetraq.com");
-  console.log("Password: Test1234!");
-  console.log("------------------------\n");
+  console.log("\n--- Credentials ---");
+  console.log("Email: dmorrissy5@gmail.com");
+  console.log("Password: snowboardX5!");
+  console.log("-------------------\n");
 
   process.exit(0);
 }

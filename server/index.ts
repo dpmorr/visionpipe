@@ -38,14 +38,6 @@ app.use((req, res, next) => {
   const path = req.path;
   let capturedJsonResponse: Record<string, any> | undefined = undefined;
 
-  // Log incoming requests with body
-  if (req.method === 'POST') {
-    console.log(`Incoming ${req.method} ${path}:`, {
-      headers: req.headers,
-      body: req.body
-    });
-  }
-
   const originalResJson = res.json;
   res.json = function (bodyJson, ...args) {
     capturedJsonResponse = bodyJson;

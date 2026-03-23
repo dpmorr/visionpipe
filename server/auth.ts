@@ -177,7 +177,7 @@ export function setupAuth(app: Express) {
         .insert(users)
         .values({
           email,
-          password: await bcrypt.hash(password, 10),
+          password: await crypto.hash(password),
           firstName,
           lastName,
           organizationId: organization.id,
