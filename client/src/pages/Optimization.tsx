@@ -4,6 +4,9 @@ import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import { ReactFlowProvider } from 'reactflow';
 import FlowChart from '@/components/FlowChart';
 import { useQuery } from '@tanstack/react-query';
+import RoutingOptimizer from '@/components/optimization/RoutingOptimizer';
+import PathsViewer from '@/components/optimization/PathsViewer';
+import StationsAnalyzer from '@/components/optimization/StationsAnalyzer';
 
 interface WastePoint {
   id: number;
@@ -88,9 +91,9 @@ export default function Locations() {
     <>
       <style>{`.css-19kzrtu { padding: 0px !important; }`}</style>
       <Box sx={{ minHeight: '100vh' }} className="waste-flow-page">
-        <Box 
-          sx={{ 
-            borderBottom: 1, 
+        <Box
+          sx={{
+            borderBottom: 1,
             borderColor: 'divider',
             bgcolor: 'background.paper',
             position: 'sticky',
@@ -99,10 +102,10 @@ export default function Locations() {
             px: 3
           }}
         >
-          <Box 
-            sx={{ 
-              display: 'flex', 
-              justifyContent: 'space-between', 
+          <Box
+            sx={{
+              display: 'flex',
+              justifyContent: 'space-between',
               alignItems: 'center'
             }}
           >
@@ -155,17 +158,13 @@ export default function Locations() {
               </Card>
             </TabPanel>
             <TabPanel value={tabValue} index={1}>
-              <Card sx={{ borderRadius: 0, minHeight: 200, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                <Box>
-                  {optMenuSelection === 'routing' && <Box>Routing optimization content coming soon...</Box>}
-                  {optMenuSelection === 'paths' && <Box>Paths optimization content coming soon...</Box>}
-                  {optMenuSelection === 'stations' && <Box>Stations optimization content coming soon...</Box>}
-                </Box>
-              </Card>
+              {optMenuSelection === 'routing' && <RoutingOptimizer />}
+              {optMenuSelection === 'paths' && <PathsViewer />}
+              {optMenuSelection === 'stations' && <StationsAnalyzer />}
             </TabPanel>
           </Box>
         </Box>
       </Box>
     </>
   );
-} 
+}

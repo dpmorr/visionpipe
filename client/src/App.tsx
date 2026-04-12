@@ -29,7 +29,8 @@ import Invoicing from "@/pages/Invoicing";
 import GoalSetter from "@/pages/GoalSetter";
 import ReportGenerator from "@/pages/ReportGenerator";
 import ProjectManagement from "@/pages/ProjectManagement";
-import Training from "@/pages/TrendsAnalysis"; 
+import Training from "@/pages/TrendsAnalysis";
+import TrainingContent from "@/pages/TrainingContent";
 import Certifications from "@/pages/Certifications";
 import VendorDashboard from "@/pages/vendor/Dashboard";
 import VendorRoutes from "@/pages/vendor/Routes";
@@ -96,7 +97,7 @@ const GoogleMapsScript = () => {
 
     if (!window.google) {
       const script = document.createElement('script');
-      script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&libraries=places&loading=async`;
+      script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&libraries=places,geometry&loading=async`;
       script.async = true;
       script.defer = true;
       document.head.appendChild(script);
@@ -288,6 +289,7 @@ function AppContent() {
                   <Route path="/projects" component={ProjectsAndGoals} />
                   <Route path="/report-generator" component={ReportGenerator} />
                   <Route path="/training" component={Training} />
+                  <Route path="/training/:slug" component={TrainingContent} />
                   <Route path="/certifications" component={Certifications} />
                   <Route path="/schedule" component={PickupSchedule} />
                   <Route path="/carbon" component={Carbon} />

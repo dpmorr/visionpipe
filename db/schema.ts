@@ -1054,3 +1054,40 @@ export const dataModels = pgTable("data_models", {
 
 export type InsertDataModel = typeof dataModels.$inferInsert;
 export type SelectDataModel = typeof dataModels.$inferSelect;
+
+// Collection routes for route optimization
+export const collectionRoutes = pgTable("collection_routes", {
+  id: serial("id").primaryKey(),
+  name: text("name").notNull(),
+  status: text("status").notNull().default("scheduled"), // scheduled, in-progress, completed
+  organizationId: integer("organization_id").references(() => organizations.id),
+  // Ordered array of waste point IDs that form this route
+  wastePointIds: jsonb("waste_point_ids").$type<number[]>().notNull(),
+  // Depot/start location
+  depotLocation: jsonb("depot_location").$type<{
+    address: string;
+    lat: number;
+    lng: number;
+  }>(),
+  // Cached optimization results from Google APIs
+  optimizedOrder: jsonb("optimized_order").$type<number[]>(),
+  routePolyline: text("route_polyline"), // encoded polyline from Routes API
+  totalDistanceMeters: integer("total_distance_meters"),
+  totalDurationSeconds: integer("total_duration_seconds"),
+  optimizedAt: timestamp("optimized_at"),
+  scheduledDate: timestamp("scheduled_date"),
+  createdAt: timestamp("created_at").defaultNow(),
+  updatedAt: timestamp("updated_at").defaultNow(),
+});
+
+export const collectionRouteRelations = relations(collectionRoutes, ({ one }) => ({
+  organization: one(organizations, {
+    fields: [collectionRoutes.organizationId],
+    references: [organizations.id],
+  })
+}));
+
+export const insertCollectionRouteSchema = createInsertSchema(collectionRoutes);
+export const selectCollectionRouteSchema = createSelectSchema(collectionRoutes);
+export type InsertCollectionRoute = typeof collectionRoutes.$inferInsert;
+export type SelectCollectionRoute = typeof collectionRoutes.$inferSelect;

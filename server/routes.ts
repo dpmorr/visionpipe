@@ -53,6 +53,7 @@ import apiTokensRouter from "./routes/api-tokens";
 import wasteAuditsRouter from './routes/waste-audits';
 import alertsRouter from "./routes/alerts";
 import dataModelsRouter from "./routes/data-models";
+import routePlanningRouter from "./routes/route-planning";
 
 // Create Express application instance
 const app = express();
@@ -146,6 +147,9 @@ export function registerRoutes(app: Express): Server {
   
   // Add data models routes
   app.use("/api/data-models", dataModelsRouter);
+
+  // Route planning and optimization
+  app.use("/api/route-planning", routePlanningRouter);
 
   // Add logo upload endpoint
   const uploadDir = 'public/uploads/company-logos';
