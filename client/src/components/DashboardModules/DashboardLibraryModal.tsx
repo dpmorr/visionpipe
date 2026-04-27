@@ -59,9 +59,9 @@ const sampleChartConfigs = {
     yField: 'value',
     seriesField: 'type',
     smooth: true,
-    color: '#37b5fe',
+    color: '#A855F7',
     areaStyle: {
-      fill: 'l(270) 0:#ffffff 0.5:#37b5fe33 1:#37b5fe66',
+      fill: 'l(270) 0:#ffffff 0.5:#A855F733 1:#A855F766',
     },
   },
   recycling: {

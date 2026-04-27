@@ -692,7 +692,7 @@ function Sensors() {
               helperText="Enter the command to execute on the device"
             />
             {commandOutput && (
-              <Paper sx={{ p: 2, bgcolor: 'grey.900', color: 'grey.100' }}>
+              <Paper sx={{ p: 2, bgcolor: 'background.default', color: 'text.primary', fontFamily: 'JetBrains Mono, ui-monospace, monospace', border: '1px solid', borderColor: 'divider' }}>
                 <Typography variant="subtitle2" gutterBottom>Output:</Typography>
                 <pre style={{ margin: 0, whiteSpace: 'pre-wrap' }}>{commandOutput}</pre>
               </Paper>
@@ -895,7 +895,7 @@ function Sensors() {
                     </TableContainer>
                     
                     {/* Summary Statistics */}
-                    <Box sx={{ mt: 3, p: 2, bgcolor: 'grey.50', borderRadius: 1 }}>
+                    <Box sx={{ mt: 3, p: 2, bgcolor: 'background.default', border: '1px solid', borderColor: 'divider', borderRadius: 1 }}>
                       <Typography variant="subtitle2" gutterBottom>Summary</Typography>
                       <Grid container spacing={2}>
                         <Grid item xs={6} md={3}>

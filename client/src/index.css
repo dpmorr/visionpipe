@@ -3,201 +3,220 @@
 @tailwind utilities;
 
 @layer base {
+  :root {
+    --radius: 0.5rem;
+
+    /* Industrial dark — Ultralytics-inspired */
+    --background: 240 10% 4%;
+    --foreground: 240 5% 96%;
+    --surface: 240 10% 7%;
+    --surface-elevated: 240 10% 9%;
+
+    --card: 240 10% 7%;
+    --card-foreground: 240 5% 96%;
+    --popover: 240 10% 9%;
+    --popover-foreground: 240 5% 96%;
+
+    --primary: 271 91% 65%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 240 6% 14%;
+    --secondary-foreground: 240 5% 96%;
+    --muted: 240 5% 12%;
+    --muted-foreground: 240 4% 65%;
+
+    --accent: 271 91% 65%;
+    --accent-foreground: 0 0% 100%;
+    --accent-magenta: 292 84% 73%;
+    --accent-cyan: 188 86% 53%;
+
+    --destructive: 0 72% 60%;
+    --destructive-foreground: 0 0% 98%;
+    --success: 158 64% 45%;
+    --success-foreground: 0 0% 100%;
+    --warning: 38 92% 55%;
+    --warning-foreground: 0 0% 5%;
+
+    --border: 240 7% 16%;
+    --border-strong: 240 7% 22%;
+    --input: 240 7% 16%;
+    --ring: 271 91% 65%;
+
+    --chart-1: 271 91% 65%;
+    --chart-2: 188 86% 53%;
+    --chart-3: 292 84% 73%;
+    --chart-4: 158 64% 45%;
+    --chart-5: 38 92% 55%;
+
+    --sidebar-background: 240 10% 6%;
+    --sidebar-foreground: 240 5% 90%;
+    --sidebar-primary: 271 91% 65%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 6% 12%;
+    --sidebar-accent-foreground: 240 5% 96%;
+    --sidebar-border: 240 7% 14%;
+    --sidebar-ring: 271 91% 65%;
+  }
+
   * {
     @apply border-border;
   }
 
+  html, body {
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+  }
+
   body {
-    @apply font-sans antialiased bg-background text-foreground;
+    @apply font-sans antialiased;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11", "ss01";
+  }
+
+  /* Numeric / metric labels */
+  .font-mono, .metric-label, .metric-value {
+    font-feature-settings: "tnum", "zero", "ss01";
+  }
+
+  /* Subtle radial halo behind heavy hero content */
+  .hero-grid {
+    background-image:
+      radial-gradient(ellipse at top, hsla(271, 91%, 65%, 0.18), transparent 60%),
+      linear-gradient(hsl(var(--border-strong)) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(var(--border-strong)) 1px, transparent 1px);
+    background-size: 100% 100%, 32px 32px, 32px 32px;
+    background-position: 0 0, -1px -1px, -1px -1px;
+  }
+
+  /* Selection */
+  ::selection {
+    background-color: hsla(271, 91%, 65%, 0.4);
+    color: #fff;
   }
 }
 
-/* Big Calendar Overrides */
-.rbc-calendar {
-  @apply font-sans;
+@layer components {
+  .surface-card {
+    @apply rounded-xl border border-border bg-card;
+  }
+
+  .surface-card-hover {
+    @apply transition-colors hover:border-border-strong;
+  }
+
+  .accent-text {
+    @apply bg-accent-gradient bg-clip-text text-transparent;
+  }
+
+  .kpi-tile {
+    @apply surface-card surface-card-hover relative overflow-hidden p-5;
+  }
+
+  .kpi-tile::before {
+    content: "";
+    @apply pointer-events-none absolute inset-x-0 top-0 h-px bg-accent-gradient opacity-60;
+  }
+
+  .badge-soft {
+    @apply inline-flex items-center gap-1.5 rounded-full border border-border bg-surface-elevated px-2.5 py-0.5 text-xs font-medium text-muted-foreground;
+  }
+
+  .badge-accent {
+    @apply inline-flex items-center gap-1.5 rounded-full border border-primary/40 bg-primary/10 px-2.5 py-0.5 text-xs font-medium text-primary;
+  }
+
+  .status-dot {
+    @apply inline-block h-1.5 w-1.5 rounded-full;
+  }
 }
 
-.rbc-toolbar {
-  @apply mb-4;
-}
-
+/* React Big Calendar — dark overrides */
+.rbc-calendar { @apply font-sans; color: hsl(var(--foreground)); }
+.rbc-toolbar { @apply mb-4; }
 .rbc-toolbar button {
-  @apply bg-white border border-gray-200 text-gray-700 px-3 py-1.5 rounded-md text-sm font-medium transition-colors;
+  background-color: hsl(var(--surface-elevated));
+  border: 1px solid hsl(var(--border));
+  color: hsl(var(--foreground));
+  @apply px-3 py-1.5 rounded-md text-sm font-medium transition-colors;
 }
-
-.rbc-toolbar button:hover {
-  @apply bg-gray-50;
-}
-
+.rbc-toolbar button:hover { background-color: hsl(var(--muted)); }
 .rbc-toolbar button.rbc-active {
-  @apply bg-blue-50 border-blue-200 text-blue-700;
+  background-color: hsl(var(--primary) / 0.15);
+  border-color: hsl(var(--primary) / 0.5);
+  color: hsl(var(--primary));
 }
-
 .rbc-header {
-  @apply bg-gray-50 py-2 font-medium text-gray-700 text-sm border-gray-200;
+  background-color: hsl(var(--surface-elevated));
+  color: hsl(var(--muted-foreground));
+  border-color: hsl(var(--border));
+  @apply py-2 font-medium text-sm;
 }
-
-.rbc-today {
-  @apply bg-blue-50;
-}
-
+.rbc-today { background-color: hsl(var(--primary) / 0.08); }
 .rbc-event {
-  @apply rounded-md shadow-sm border-none;
+  background-color: hsl(var(--primary));
+  color: hsl(var(--primary-foreground));
+  border: none;
+  @apply rounded-md;
 }
-
-.rbc-event.rbc-selected {
-  @apply ring-2 ring-blue-400 ring-offset-2;
-}
-
-.rbc-event-content {
-  @apply font-medium;
-}
-
-.rbc-event-label {
-  @apply text-xs;
-}
-
-.rbc-off-range-bg {
-  @apply bg-gray-50;
-}
-
-.rbc-date-cell {
-  @apply text-sm text-gray-600;
-}
-
-.rbc-show-more {
-  @apply text-sm text-blue-600 hover:text-blue-700;
-}
-
+.rbc-event.rbc-selected { box-shadow: 0 0 0 2px hsl(var(--primary)); }
+.rbc-event-content { @apply font-medium; }
+.rbc-event-label { @apply text-xs; }
+.rbc-off-range-bg { background-color: hsl(var(--background)); }
+.rbc-date-cell { color: hsl(var(--muted-foreground)); @apply text-sm; }
+.rbc-show-more { color: hsl(var(--primary)); @apply text-sm; }
 .rbc-month-view, .rbc-time-view, .rbc-agenda-view {
-  @apply border border-gray-200 rounded-lg shadow-sm bg-white;
+  background-color: hsl(var(--card));
+  border: 1px solid hsl(var(--border));
+  @apply rounded-lg;
 }
-
-.rbc-day-bg + .rbc-day-bg {
-  @apply border-gray-200;
-}
-
-.rbc-month-row + .rbc-month-row {
-  @apply border-gray-200;
-}
-
-.rbc-timeslot-group {
-  @apply border-gray-200;
-}
-
-.rbc-time-header-content {
-  @apply border-gray-200;
-}
-
-.rbc-time-content {
-  @apply border-gray-200;
-}
-
+.rbc-day-bg + .rbc-day-bg,
+.rbc-month-row + .rbc-month-row,
+.rbc-timeslot-group,
+.rbc-time-header-content,
+.rbc-time-content,
 .rbc-time-header.rbc-overflowing {
-  @apply border-gray-200;
+  border-color: hsl(var(--border));
 }
 
-/* Gantt Chart Styles */
+/* Gantt */
 .gantt-chart {
-  @apply bg-white rounded-lg shadow-sm;
+  background-color: hsl(var(--card));
+  @apply rounded-lg;
 }
-
-.gantt-task {
-  @apply relative rounded-sm shadow-sm transition-all;
-}
-
-.gantt-task-planning {
-  @apply bg-blue-50 hover:bg-blue-100 transition-colors;
-}
-
-.gantt-task-active {
-  @apply bg-blue-50 hover:bg-blue-100 transition-colors;
-}
-
-.gantt-task-completed {
-  @apply bg-blue-50 hover:bg-blue-100 transition-colors;
-}
-
+.gantt-task { @apply relative rounded-sm transition-all; }
+.gantt-task-planning,
+.gantt-task-active,
+.gantt-task-completed,
 .gantt-task-cancelled {
-  @apply bg-blue-50 hover:bg-blue-100 transition-colors;
+  background-color: hsl(var(--primary) / 0.18);
+  @apply hover:brightness-125 transition;
 }
-
-.bg-planning {
-  @apply bg-yellow-100 text-yellow-800;
-}
-
-.bg-active {
-  @apply bg-green-100 text-green-800;
-}
-
-.bg-completed {
-  @apply bg-blue-100 text-blue-800;
-}
-
-.bg-cancelled {
-  @apply bg-red-100 text-red-800;
-}
-
+.bg-planning { background-color: hsl(38 92% 55% / 0.18); color: hsl(38 92% 70%); }
+.bg-active { background-color: hsl(158 64% 45% / 0.18); color: hsl(158 64% 65%); }
+.bg-completed { background-color: hsl(271 91% 65% / 0.18); color: hsl(271 91% 75%); }
+.bg-cancelled { background-color: hsl(0 72% 60% / 0.18); color: hsl(0 72% 75%); }
 .timeline-header {
-  @apply bg-gray-50 border-b text-sm font-medium text-gray-600;
+  background-color: hsl(var(--surface-elevated));
+  border-color: hsl(var(--border));
+  color: hsl(var(--muted-foreground));
+  @apply text-sm font-medium;
 }
+.timeline-grid { border-color: hsl(var(--border)); }
+.timeline-today { background-color: hsl(var(--primary) / 0.08); }
+.timeline-weekend { background-color: hsl(var(--surface-elevated)); }
 
-.timeline-grid {
-  @apply border-gray-200;
+/* Ant Design dark patches — minimum to keep its surfaces consistent */
+.ant-layout, .ant-layout-content, .ant-layout-sider {
+  background-color: hsl(var(--background)) !important;
 }
-
-.timeline-today {
-  @apply bg-blue-50;
+.ant-card {
+  background-color: hsl(var(--card)) !important;
+  border: 1px solid hsl(var(--border)) !important;
+  color: hsl(var(--foreground)) !important;
 }
-
-.timeline-weekend {
-  @apply bg-gray-50;
+.ant-card-head {
+  border-bottom-color: hsl(var(--border)) !important;
+  color: hsl(var(--foreground)) !important;
 }
-
-#root > div.min-h-screen.flex.items-center.justify-center.bg-gradient-to-br.from-gray-50.to-gray-100.p-4 > div > div.flex.flex-col.p-6.space-y-2.text-center > div > a > a > div > img {
-  scale: 3.5;
-}
-
-.to-gray-100 {
-  background: #225879;
-}
-
-#root > div.ant-layout.ant-layout-has-sider.css-dev-only-do-not-override-77tu7h > aside > div > div.flex.items-center.justify-center.p-4.h-24.bg-background > a > a {
-  zoom: 2;
-  margin: -13px -13px -15px -15px;
-}
-
-#root > div.ant-layout.ant-layout-has-sider.css-dev-only-do-not-override-77tu7h > div > main > div > div.ant-list.ant-list-split.ant-list-grid.css-dev-only-do-not-override-77tu7h > div > div > div > div:nth-child(n) > div > div > div > div > div > div:nth-child(1) > div > div:nth-child(1) > div > div:nth-child(1) > span > img {
-  object-fit: contain !important;
-}
-
-#root > div > div > div > div > div.MuiBox-root.css-1fm32i4 {
-  padding: 5px !important;
-}
-
-.css-1fm32i4 {
-  padding: 5px !important;
-  min-height: 50px !important;
-}
-
-.css-vjedb6:not(.home-page) {
-  padding: 0px !important;
-}
-
-.css-19n8dai {
-  padding-left: 24px !important;
-  padding-right: 24px !important;
-}
-
-.css-n4y85v, .css-11cfnx9 {
-  padding: 0px !important;
-}
-
-/* Override padding for waste flow page */
-.waste-flow-page {
-  padding: 0 !important;
-}
-
-#optimization-tabpanel-0 > div > div > div {
-  height: 91vh !important;
-}
+.ant-list-item { border-color: hsl(var(--border)) !important; }
+.ant-typography { color: hsl(var(--foreground)) !important; }
+.ant-typography.ant-typography-secondary,
+.ant-typography-caption { color: hsl(var(--muted-foreground)) !important; }

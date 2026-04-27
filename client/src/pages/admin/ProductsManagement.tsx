@@ -252,7 +252,7 @@ export default function ProductsManagement() {
                   <span className={`capitalize ${
                     product.status === 'active' ? 'text-green-600' :
                     product.status === 'draft' ? 'text-yellow-600' :
-                    'text-gray-600'
+                    'text-muted-foreground'
                   }`}>
                     {product.status}
                   </span>

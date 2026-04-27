@@ -233,32 +233,82 @@ export default function HomePage() {
   const filteredVisibleModules = visibleModules.filter(module => !deletedMetrics.includes(module));
 
   return (
-    <Box sx={{ pt: 3 }} className="home-page">
-      <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mb: 4 }}>
-        <Typography variant="h4" component="h1" sx={{ fontWeight: 600 }}>
-          Home
-        </Typography>
-        <Box sx={{ display: 'flex', gap: 1 }}>
-          <IconButton 
-            size="small" 
-            onClick={() => setIsLocked(!isLocked)}
-            sx={{ 
-              color: isLocked ? 'text.secondary' : 'primary.main',
-              '&:hover': { bgcolor: 'action.hover' }
-            }}
-          >
-            {isLocked ? <LockIcon fontSize="medium" /> : <LockOpenIcon fontSize="medium" />}
-          </IconButton>
-          <IconButton 
-            size="small"
-            onClick={() => setConfigVisible(true)}
-            sx={{ 
-              color: 'primary.main',
-              '&:hover': { bgcolor: 'action.hover' }
-            }}
-          >
-            <TuneIcon fontSize="medium" />
-          </IconButton>
+    <Box className="home-page">
+      <Box
+        sx={{
+          position: 'relative',
+          overflow: 'hidden',
+          mb: 4,
+          p: { xs: 3, md: 4 },
+          borderRadius: 3,
+          border: '1px solid',
+          borderColor: 'divider',
+          background:
+            'linear-gradient(135deg, hsl(240, 10%, 7%) 0%, hsl(240, 10%, 5%) 100%)',
+        }}
+      >
+        <Box
+          aria-hidden
+          sx={{
+            position: 'absolute',
+            inset: 0,
+            backgroundImage:
+              'radial-gradient(ellipse 60% 80% at 90% 0%, hsla(271, 91%, 65%, 0.18) 0%, transparent 60%), radial-gradient(ellipse 40% 70% at 0% 100%, hsla(292, 84%, 73%, 0.12) 0%, transparent 60%)',
+            pointerEvents: 'none',
+          }}
+        />
+        <Box sx={{ position: 'relative', display: 'flex', alignItems: { xs: 'flex-start', md: 'center' }, justifyContent: 'space-between', flexDirection: { xs: 'column', md: 'row' }, gap: 2 }}>
+          <Box>
+            <Typography
+              variant="overline"
+              sx={{
+                display: 'block',
+                color: 'primary.light',
+                fontFamily: 'JetBrains Mono, ui-monospace, monospace',
+                fontSize: '0.7rem',
+                letterSpacing: '0.14em',
+                mb: 1,
+              }}
+            >
+              ◢ COMMAND CENTER
+            </Typography>
+            <Typography
+              variant="h4"
+              component="h1"
+              sx={{ fontWeight: 700, letterSpacing: '-0.02em', mb: 0.5 }}
+            >
+              Workspace overview
+            </Typography>
+            <Typography variant="body2" color="text.secondary" sx={{ maxWidth: 560 }}>
+              Real-time signals from your detection pipelines, sensors, and waste streams.
+            </Typography>
+          </Box>
+          <Box sx={{ display: 'flex', gap: 1 }}>
+            <IconButton
+              size="small"
+              onClick={() => setIsLocked(!isLocked)}
+              sx={{
+                border: '1px solid',
+                borderColor: 'divider',
+                borderRadius: '8px',
+                color: isLocked ? 'text.secondary' : 'primary.light',
+              }}
+            >
+              {isLocked ? <LockIcon fontSize="small" /> : <LockOpenIcon fontSize="small" />}
+            </IconButton>
+            <IconButton
+              size="small"
+              onClick={() => setConfigVisible(true)}
+              sx={{
+                border: '1px solid',
+                borderColor: 'divider',
+                borderRadius: '8px',
+                color: 'text.secondary',
+              }}
+            >
+              <TuneIcon fontSize="small" />
+            </IconButton>
+          </Box>
         </Box>
       </Box>
 

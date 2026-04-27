@@ -353,10 +353,10 @@ export function AnalyticsBuilder({
 
   return (
     <Box sx={{ width: '100%', height: '100vh' }}>
-      <Box sx={{ 
-        borderBottom: 1, 
+      <Box sx={{
+        borderBottom: 1,
         borderColor: 'divider',
-        bgcolor: 'white'
+        bgcolor: 'background.paper'
       }}>
         <Tabs value={currentTab} onChange={(_, newValue) => setCurrentTab(newValue)}>
           <Tab label="Charts" />

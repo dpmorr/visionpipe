@@ -1037,7 +1037,7 @@ export default function SettingsPage() {
             <Typography variant="subtitle1" gutterBottom sx={{ fontWeight: 'bold' }}>
               Available ({availableModules.length})
             </Typography>
-            <Paper sx={{ height: 400, overflow: 'auto', border: '1px solid #e0e0e0', bgcolor: '#fafafa' }}>
+            <Paper sx={{ height: 400, overflow: 'auto', border: '1px solid', borderColor: 'divider', bgcolor: 'background.paper' }}>
               <List dense>
                 {availableModules.map((moduleKey) => {
                   const isDefaultForMode = currentModeModules.includes(moduleKey);
@@ -1073,14 +1073,14 @@ export default function SettingsPage() {
             <IconButton
               onClick={moveSelectedToActive}
               disabled={selectedAvailable.length === 0}
-              sx={{ bgcolor: 'primary.main', color: 'white', '&:hover': { bgcolor: 'primary.dark' }, '&:disabled': { bgcolor: 'grey.300' } }}
+              sx={{ bgcolor: 'primary.main', color: 'white', '&:hover': { bgcolor: 'primary.dark' }, '&:disabled': { bgcolor: 'action.disabledBackground' } }}
             >
               <ArrowForwardIcon />
             </IconButton>
             <IconButton
               onClick={moveSelectedToAvailable}
               disabled={selectedActive.length === 0}
-              sx={{ bgcolor: 'primary.main', color: 'white', '&:hover': { bgcolor: 'primary.dark' }, '&:disabled': { bgcolor: 'grey.300' } }}
+              sx={{ bgcolor: 'primary.main', color: 'white', '&:hover': { bgcolor: 'primary.dark' }, '&:disabled': { bgcolor: 'action.disabledBackground' } }}
             >
               <ArrowBackIcon />
             </IconButton>
@@ -1090,7 +1090,7 @@ export default function SettingsPage() {
             <Typography variant="subtitle1" gutterBottom sx={{ fontWeight: 'bold' }}>
               Active ({activeModules.length})
             </Typography>
-            <Paper sx={{ height: 400, overflow: 'auto', border: '1px solid #4caf50', bgcolor: '#f1f8e9' }}>
+            <Paper sx={{ height: 400, overflow: 'auto', border: '1px solid', borderColor: 'success.main', bgcolor: 'hsla(158, 64%, 45%, 0.06)' }}>
               <DragDropContext onDragEnd={onDragEnd}>
                 <Droppable droppableId="activeModules">
                   {(provided) => (
@@ -1140,7 +1140,7 @@ export default function SettingsPage() {
             </Paper>
           </Box>
         </Box>
-        <Box sx={{ mt: 3, p: 2, bgcolor: 'grey.50', borderRadius: 1 }}>
+        <Box sx={{ mt: 3, p: 2, bgcolor: 'background.default', border: '1px solid', borderColor: 'divider', borderRadius: 1 }}>
           <Typography variant="subtitle2" gutterBottom>Current Mode: {mode}</Typography>
           <Typography variant="body2" color="text.secondary">
             {mode === 'simple' 

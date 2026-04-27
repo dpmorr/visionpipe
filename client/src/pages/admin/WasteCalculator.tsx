@@ -364,7 +364,7 @@ export default function WasteCalculator() {
                     <>
                       <Title level={5}>Embed code for: {selectedConfig.name}</Title>
                       <Text>Copy and paste this code to embed the calculator on your website:</Text>
-                      <Paragraph className="bg-gray-50 p-4 rounded">
+                      <Paragraph className="bg-surface-elevated border border-border p-4 rounded">
                         <pre>{embedCode}</pre>
                       </Paragraph>
                       <Button

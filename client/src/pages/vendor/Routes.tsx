@@ -278,9 +278,9 @@ export default function VendorRoutes() {
                   <TableCell>{route.name}</TableCell>
                   <TableCell>
                     <div className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium capitalize
-                      ${route.status === 'completed' ? 'bg-green-100 text-green-800' :
-                        route.status === 'in-progress' ? 'bg-blue-100 text-blue-800' :
-                          'bg-yellow-100 text-yellow-800'
+                      ${route.status === 'completed' ? 'bg-success/15 text-success border border-success/40' :
+                        route.status === 'in-progress' ? 'bg-accent-cyan/15 text-accent-cyan border border-accent-cyan/40' :
+                          'bg-warning/15 text-warning border border-warning/40'
                       }`}>
                       {route.status}
                     </div>

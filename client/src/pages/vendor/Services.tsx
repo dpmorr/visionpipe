@@ -13,7 +13,7 @@ export default function VendorServices() {
       
       <div className="flex justify-end">
         <Button
-          className="bg-[#04a2fe] hover:bg-[#0388d4] text-white"
+          className="bg-primary hover:bg-primary/90 text-white"
         >
           <Plus className="mr-2 h-4 w-4" />
           Add Service

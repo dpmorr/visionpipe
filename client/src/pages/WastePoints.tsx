@@ -413,9 +413,9 @@ export default function WastePoints() {
             sx={{ 
               px: 3, 
               my: 1,
-              backgroundColor: '#04a2fe',
+              backgroundColor: '#A855F7',
               '&:hover': {
-                backgroundColor: '#0388d4',
+                backgroundColor: '#9333EA',
               }
             }}
           >

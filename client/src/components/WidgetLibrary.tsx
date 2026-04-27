@@ -12,7 +12,7 @@ const WidgetLibrary = () => {
     <Box
       sx={{
         width: 300,
-        bgcolor: 'white',
+        bgcolor: 'background.paper',
         borderLeft: '1px solid',
         borderColor: 'divider',
         height: '100vh',
@@ -30,13 +30,13 @@ const WidgetLibrary = () => {
             draggable
             onDragStart={(e) => handleDragStart(e, widget)}
             sx={{
-              bgcolor: '#37b5fe',
+              bgcolor: '#A855F7',
               color: 'white',
               mb: 1,
               borderRadius: 1,
               cursor: 'move',
               '&:hover': {
-                bgcolor: '#0094e5',
+                bgcolor: '#9333EA',
               },
             }}
           >

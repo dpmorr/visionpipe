@@ -88,7 +88,7 @@ const metrics: Metric[] = [
     defaultValue: 0,
     unit: 'kg',
     icon: <ReconciliationIcon />,
-    background: 'linear-gradient(135deg, #37b5fe 0%, #0094e5 100%)',
+    background: 'linear-gradient(135deg, #A855F7 0%, #E879F9 100%)',
     analyticsPath: '/analytics/waste-reduction',
   },
   {
@@ -97,7 +97,7 @@ const metrics: Metric[] = [
     defaultValue: 0,
     unit: '%',
     icon: <SyncIcon />,
-    background: 'linear-gradient(135deg, #37b5fe 0%, #0094e5 100%)',
+    background: 'linear-gradient(135deg, #A855F7 0%, #E879F9 100%)',
     analyticsPath: '/analytics/recycling',
   },
   {
@@ -106,7 +106,7 @@ const metrics: Metric[] = [
     defaultValue: 0,
     unit: 'tons',
     icon: <CloudIcon />,
-    background: 'linear-gradient(135deg, #37b5fe 0%, #0094e5 100%)',
+    background: 'linear-gradient(135deg, #A855F7 0%, #E879F9 100%)',
     analyticsPath: '/analytics/carbon',
   },
   {
@@ -115,7 +115,7 @@ const metrics: Metric[] = [
     defaultValue: 0,
     unit: '$',
     icon: <DollarIcon />,
-    background: 'linear-gradient(135deg, #37b5fe 0%, #0094e5 100%)',
+    background: 'linear-gradient(135deg, #A855F7 0%, #E879F9 100%)',
     analyticsPath: '/analytics/cost-savings',
   },
 ];

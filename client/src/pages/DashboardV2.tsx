@@ -89,7 +89,7 @@ export default function DashboardV2() {
                     <XAxis dataKey="week" />
                     <YAxis />
                     <Tooltip />
-                    <Line type="monotone" dataKey="landfill" stroke="#37b5fe" name="Landfill" />
+                    <Line type="monotone" dataKey="landfill" stroke="#A855F7" name="Landfill" />
                     <Line type="monotone" dataKey="recycled" stroke="#6366F1" name="Recycled" />
                     <Line type="monotone" dataKey="repurposed" stroke="#F59E0B" name="Repurposed" />
                   </LineChart>
@@ -189,8 +189,8 @@ export default function DashboardV2() {
                     value={63}
                     text="63%"
                     styles={buildStyles({
-                      pathColor: '#37b5fe',
-                      textColor: '#37b5fe',
+                      pathColor: '#A855F7',
+                      textColor: '#A855F7',
                       trailColor: '#E5E7EB',
                     })}
                   />

@@ -211,7 +211,7 @@ export default function HelpPage() {
       </TabPanel>
 
       <TabPanel value={tabValue} index={3}>
-        <Box sx={{ bgcolor: 'grey.50', p: 0, m: 0 }}>
+        <Box sx={{ bgcolor: 'background.default', p: 0, m: 0 }}>
           <DocsPage />
         </Box>
       </TabPanel>

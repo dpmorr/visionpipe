@@ -375,7 +375,7 @@ export default function CertificationsPage() {
     pending: "bg-yellow-500",
     approved: "bg-green-500",
     rejected: "bg-red-500",
-    expired: "bg-gray-500",
+    expired: "bg-muted",
   };
 
   const statusIcons = {
@@ -438,7 +438,7 @@ export default function CertificationsPage() {
             <h4 className="font-medium mb-2">Requirements:</h4>
             <ul className="list-disc pl-5 space-y-1">
               {cert.requirements.map((req, idx) => (
-                <li key={idx} className="text-sm text-gray-600">{req}</li>
+                <li key={idx} className="text-sm text-muted-foreground">{req}</li>
               ))}
             </ul>
           </div>
@@ -455,7 +455,7 @@ export default function CertificationsPage() {
               <Badge variant="outline">{cert.validityPeriod} months validity</Badge>
             </div>
 
-            <div className="text-sm text-gray-600">
+            <div className="text-sm text-muted-foreground">
               <p>Provider: {cert.provider}</p>
               <p>Estimated Time: {cert.estimatedTime}</p>
               <p>Cost Level: {cert.cost}</p>
@@ -497,7 +497,7 @@ export default function CertificationsPage() {
       case 'approved':
         return <CheckCircle className="h-5 w-5 text-green-500" />;
       default:
-        return <Clock className="h-5 w-5 text-gray-500" />;
+        return <Clock className="h-5 w-5 text-muted-foreground" />;
     }
   };
 
@@ -637,7 +637,7 @@ export default function CertificationsPage() {
                 <h4 className="font-medium mb-2">Next Steps:</h4>
                 <ul className="list-disc pl-5 space-y-1">
                   {progress.nextSteps.map((step, idx) => (
-                    <li key={idx} className="text-sm text-gray-600">{step}</li>
+                    <li key={idx} className="text-sm text-muted-foreground">{step}</li>
                   ))}
                 </ul>
               </div>
@@ -647,7 +647,7 @@ export default function CertificationsPage() {
             {progress.notes && (
               <div>
                 <h4 className="font-medium mb-2">Notes:</h4>
-                <p className="text-sm text-gray-600">{progress.notes}</p>
+                <p className="text-sm text-muted-foreground">{progress.notes}</p>
               </div>
             )}
           </div>
@@ -678,7 +678,7 @@ export default function CertificationsPage() {
         {/* Available Certifications Tab */}
         <TabsContent value="available" className="space-y-4">
           <div className="mb-4">
-            <label className="block text-sm font-medium text-gray-700 mb-1">
+            <label className="block text-sm font-medium text-foreground mb-1">
               Filter by Industry
             </label>
             <Select

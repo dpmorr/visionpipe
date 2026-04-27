@@ -142,9 +142,12 @@ export function AIAnalysisWidget({ config }: AIAnalysisWidgetProps) {
               <Typography variant="subtitle1" gutterBottom>
                 Analysis Details:
               </Typography>
-              <pre style={{ 
-                backgroundColor: '#f5f5f5', 
-                padding: '10px', 
+              <pre style={{
+                backgroundColor: 'hsl(240, 10%, 9%)',
+                color: 'hsl(240, 5%, 96%)',
+                fontFamily: 'JetBrains Mono, ui-monospace, monospace',
+                border: '1px solid hsl(240, 7%, 16%)',
+                padding: '10px',
                 borderRadius: '4px',
                 overflow: 'auto',
                 fontSize: '0.875rem'

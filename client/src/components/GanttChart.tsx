@@ -28,7 +28,7 @@ const localizer = momentLocalizer(moment);
 
 const statusColors = {
   planning: '#f59e0b',
-  active: '#37b5fe',
+  active: '#A855F7',
   completed: '#3b82f6',
   cancelled: '#ef4444'
 };

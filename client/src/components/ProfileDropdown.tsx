@@ -23,7 +23,7 @@ export default function ProfileDropdown() {
           sx={{ 
             width: 40,
             height: 40,
-            bgcolor: '#37b5fe',
+            bgcolor: '#A855F7',
             color: 'white',
             cursor: 'pointer'
           }}

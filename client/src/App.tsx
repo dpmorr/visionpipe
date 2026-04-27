@@ -4,10 +4,11 @@ import CssBaseline from '@mui/material/CssBaseline';
 import { Switch, Route, useLocation } from "wouter";
 import { useUser } from "@/hooks/use-user";
 import { useSidebar } from "@/hooks/use-sidebar";
-import { CustomizationProvider, useCustomization } from "@/contexts/customization";
-import { createTheme } from "../../src/theme";
+import { CustomizationProvider } from "@/contexts/customization";
+import theme from "@/theme";
 import Calculator from "@/pages/public/Calculator";
 import SideNav from "@/components/SideNav";
+import TopBar from "@/components/TopBar";
 import ProfileDropdown from "@/components/ProfileDropdown";
 import AuthPage from "@/pages/AuthPage";
 import LiteLayout from "@/components/LiteLayout";
@@ -109,16 +110,8 @@ const GoogleMapsScript = () => {
 
 function AppContent() {
   const { user, isLoading } = useUser();
-  const { collapsed, setCollapsed } = useSidebar();
-  const customization = useCustomization();
+  const { collapsed } = useSidebar();
   const [location, setLocation] = useLocation();
-
-  const theme = createTheme({
-    colorPreset: customization.colorPreset,
-    direction: customization.direction,
-    paletteMode: customization.paletteMode,
-    layout: customization.layout,
-  });
 
   // Check if we're in Connect mode
   const isConnectPath = location.startsWith('/connect');
@@ -233,12 +226,14 @@ function AppContent() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <Box sx={{ display: 'flex' }}>
+      <Box sx={{ display: 'flex', minHeight: '100vh', bgcolor: 'background.default' }}>
         <SideNav />
         <Box
           component="main"
           sx={{
             flexGrow: 1,
+            display: 'flex',
+            flexDirection: 'column',
             marginLeft: 0,
             width: `calc(100% - ${collapsed ? COLLAPSED_WIDTH : DRAWER_WIDTH}px)`,
             transition: theme.transitions.create(['width', 'margin'], {
@@ -247,12 +242,12 @@ function AppContent() {
             }),
           }}
         >
-          <Box 
+          <TopBar />
+          <Box
             component="div"
             sx={{
               flexGrow: 1,
               p: 3,
-              minHeight: '100vh',
               bgcolor: 'background.default'
             }}
           >

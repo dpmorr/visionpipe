@@ -46,10 +46,10 @@ import GanttChart from "@/components/GanttChart";
 import KanbanBoard from "@/components/KanbanBoard";
 
 const statusColors: Record<string, { bgcolor: string; color: string }> = {
-  planning: { bgcolor: '#FEF9C3', color: '#854D0E' },
-  active: { bgcolor: '#DCFCE7', color: '#166534' },
-  completed: { bgcolor: '#DBEAFE', color: '#1E40AF' },
-  cancelled: { bgcolor: '#FEE2E2', color: '#991B1B' }
+  planning: { bgcolor: 'hsla(38, 92%, 55%, 0.16)', color: 'hsl(38, 92%, 70%)' },
+  active: { bgcolor: 'hsla(158, 64%, 45%, 0.16)', color: 'hsl(158, 64%, 65%)' },
+  completed: { bgcolor: 'hsla(271, 91%, 65%, 0.16)', color: 'hsl(271, 91%, 75%)' },
+  cancelled: { bgcolor: 'hsla(0, 72%, 60%, 0.16)', color: 'hsl(0, 72%, 75%)' }
 };
 
 export function InitiativeEditDialog({

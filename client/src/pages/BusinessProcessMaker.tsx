@@ -383,9 +383,9 @@ export default function BusinessProcessMaker() {
       key: 'wasteType',
       render: (type: string) => (
         <Tag color={
-          type === 'Hazardous' ? '#04a2fe' :
-            type === 'Recyclable' ? '#04a2fe' :
-              '#04a2fe'
+          type === 'Hazardous' ? '#A855F7' :
+            type === 'Recyclable' ? '#A855F7' :
+              '#A855F7'
         }>
           {type}
         </Tag>
@@ -413,12 +413,12 @@ export default function BusinessProcessMaker() {
       render: (record: WastePoint) => (
         record.sensor ? (
           <Tooltip title={`Last reading: ${record.sensor.lastReading} ${record.sensor.lastReadingUnit}`}>
-            <Tag icon={<ApiOutlined />} color="#04a2fe">
+            <Tag icon={<ApiOutlined />} color="#A855F7">
               {record.sensor.name} ({record.sensor.type})
             </Tag>
           </Tooltip>
         ) : (
-          <Tag icon={<ApiOutlined />} color="#04a2fe">No sensor</Tag>
+          <Tag icon={<ApiOutlined />} color="#A855F7">No sensor</Tag>
         )
       ),
     },
@@ -606,7 +606,7 @@ export default function BusinessProcessMaker() {
               onChange={(e) => setLocationName(e.target.value)}
             />
           </Form.Item>
-          <div className="text-gray-500">
+          <div className="text-muted-foreground">
             Saving: {selectedLocation?.label}
           </div>
         </Form>

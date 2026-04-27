@@ -402,7 +402,8 @@ export default function AddWastePointModal({ open, onClose, onSubmit, initialDat
                     fontFamily: 'inherit',
                     position: 'relative',
                     zIndex: 1,
-                    backgroundColor: 'white'
+                    backgroundColor: 'hsl(240, 10%, 9%)',
+                    color: 'hsl(240, 5%, 96%)'
                   }}
                 />
                 {predictions.length > 0 && (

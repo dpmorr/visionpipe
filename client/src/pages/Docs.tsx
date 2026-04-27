@@ -487,7 +487,7 @@ export default function DocsPage() {
   );
 
   return (
-    <Box sx={{ display: 'flex', minHeight: '100vh', bgcolor: 'grey.50' }}>
+    <Box sx={{ display: 'flex', minHeight: '100vh', bgcolor: 'background.default' }}>
       {/* Sidebar */}
       {isMobile ? (
         <Drawer
@@ -499,7 +499,7 @@ export default function DocsPage() {
           {drawer}
         </Drawer>
       ) : (
-        <Box sx={{ width: 260, flexShrink: 0, bgcolor: 'white', borderRight: 1, borderColor: 'grey.200', minHeight: '100vh' }}>
+        <Box sx={{ width: 260, flexShrink: 0, bgcolor: 'background.paper', borderRight: 1, borderColor: 'divider', minHeight: '100vh' }}>
           {drawer}
         </Box>
       )}

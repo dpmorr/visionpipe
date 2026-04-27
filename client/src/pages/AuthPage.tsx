@@ -11,74 +11,82 @@ import {
   Typography,
   TextField,
   Button,
-  Container,
   Divider,
   useTheme,
   alpha,
   Chip,
+  Stack,
 } from "@mui/material";
+import {
+  AutoAwesome as AutoAwesomeIcon,
+  Insights as InsightsIcon,
+  ShieldOutlined as ShieldOutlinedIcon,
+  HubOutlined as HubOutlinedIcon,
+  CheckCircleOutline as CheckCircleOutlineIcon,
+} from "@mui/icons-material";
 import { Form } from "@/components/ui/form";
 import { useToast } from "@/hooks/use-toast";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { FaGoogle, FaMicrosoft, FaGithub } from "react-icons/fa";
-import Logo from '@/components/Logo';
+import { FaGoogle, FaMicrosoft } from "react-icons/fa";
+import Logo from "@/components/Logo";
 
-// Feature highlights configuration
 const featureHighlights = [
   {
-    title: "AI Analytics",
-    description: "Smart insights",
-    icon: "🤖"
+    title: "Computer Vision",
+    description: "Real-time object detection and waste classification at the edge.",
+    Icon: AutoAwesomeIcon,
   },
   {
-    title: "Real-time Data",
-    description: "Live monitoring",
-    icon: "📊"
+    title: "Telemetry",
+    description: "Stream sensor data into a unified time-series fabric.",
+    Icon: InsightsIcon,
   },
   {
     title: "Compliance",
-    description: "Stay compliant",
-    icon: "✅"
+    description: "Audit-ready reports across every facility and jurisdiction.",
+    Icon: ShieldOutlinedIcon,
   },
   {
-    title: "Integration",
-    description: "Connect systems",
-    icon: "🔄"
-  }
+    title: "Integrations",
+    description: "Native connectors for ERP, scales, and route optimization.",
+    Icon: HubOutlinedIcon,
+  },
 ];
 
-// Registration steps configuration
 const registrationSteps = [
   {
     title: "Create your account",
     type: "credentials",
-    fields: ["email", "password", "firstName", "lastName", "companyName"]
+    fields: ["email", "password", "firstName", "lastName", "companyName"],
   },
   {
     title: "What best describes your role?",
     type: "cards",
     field: "role",
     options: [
-      { id: "user", label: "Business User", description: "I want to manage sustainability for my organization" },
-      { id: "vendor", label: "Vendor", description: "I provide waste management and recycling services" }
-    ]
+      { id: "user", label: "Operator", description: "Manage waste and CV pipelines for my organization." },
+      { id: "vendor", label: "Service Provider", description: "Provide waste hauling, recycling, or processing services." },
+    ],
   },
   {
-    title: "What industry are you in?",
+    title: "Industry vertical",
     type: "cards",
     field: "industry",
     options: [
-      { id: "manufacturing", label: "Manufacturing", description: "Production and assembly of goods" },
-      { id: "retail", label: "Retail", description: "Consumer goods and services" },
-      { id: "healthcare", label: "Healthcare", description: "Medical and healthcare services" },
-      { id: "technology", label: "Technology", description: "Software and tech services" }
-    ]
-  }
-];
+      { id: "manufacturing", label: "Manufacturing", description: "Production, assembly, and process operations." },
+      { id: "retail", label: "Retail", description: "Distribution, stores, and consumer goods." },
+      { id: "healthcare", label: "Healthcare", description: "Clinical, lab, and pharmaceutical waste." },
+      { id: "technology", label: "Technology", description: "Data centers, electronics, and circular tech." },
+    ],
+  },
+] as const;
 
-// Selection card component
-const SelectionCard = ({ option, selected, onClick }: {
-  option: { id: string; label: string; description: string; };
+const SelectionCard = ({
+  option,
+  selected,
+  onClick,
+}: {
+  option: { id: string; label: string; description: string };
   selected: boolean;
   onClick: () => void;
 }) => {
@@ -87,22 +95,31 @@ const SelectionCard = ({ option, selected, onClick }: {
     <Card
       onClick={onClick}
       sx={{
-        cursor: 'pointer',
-        padding: 2,
-        height: '100%',
-        transition: 'all 0.2s',
-        border: '2px solid',
-        borderColor: selected ? theme.palette.primary.main : 'transparent',
-        backgroundColor: selected ? alpha(theme.palette.primary.main, 0.05) : 'background.paper',
-        '&:hover': {
-          transform: 'translateY(-4px)',
-          boxShadow: theme.shadows[4]
-        }
+        cursor: "pointer",
+        p: 2.5,
+        height: "100%",
+        transition: "all 0.15s ease",
+        border: `1px solid ${selected ? theme.palette.primary.main : theme.palette.divider}`,
+        backgroundColor: selected
+          ? alpha(theme.palette.primary.main, 0.08)
+          : theme.palette.background.paper,
+        boxShadow: selected
+          ? `0 0 0 3px ${alpha(theme.palette.primary.main, 0.2)}`
+          : "none",
+        "&:hover": {
+          borderColor: theme.palette.primary.main,
+          transform: "translateY(-2px)",
+        },
       }}
     >
-      <Typography variant="h6" gutterBottom>
-        {option.label}
-      </Typography>
+      <Stack direction="row" alignItems="center" spacing={1} mb={0.5}>
+        <Typography variant="subtitle1" sx={{ fontWeight: 600 }}>
+          {option.label}
+        </Typography>
+        {selected && (
+          <CheckCircleOutlineIcon sx={{ fontSize: 18, color: "primary.main" }} />
+        )}
+      </Stack>
       <Typography variant="body2" color="text.secondary">
         {option.description}
       </Typography>
@@ -119,14 +136,10 @@ export default function AuthPage() {
   const theme = useTheme();
 
   const loginForm = useForm({
-    resolver: zodResolver(insertUserSchema.pick({
-      email: true,
-      password: true
-    })),
-    defaultValues: {
-      email: "",
-      password: "",
-    },
+    resolver: zodResolver(
+      insertUserSchema.pick({ email: true, password: true })
+    ),
+    defaultValues: { email: "", password: "" },
   });
 
   const registerForm = useForm({
@@ -145,7 +158,7 @@ export default function AuthPage() {
   const handleOptionSelect = (field: string, value: string) => {
     registerForm.setValue(field as any, value);
     if (currentStep < registrationSteps.length - 1) {
-      setCurrentStep(prev => prev + 1);
+      setCurrentStep((prev) => prev + 1);
     } else {
       onRegister(registerForm.getValues());
     }
@@ -153,12 +166,9 @@ export default function AuthPage() {
 
   const handleNextStep = async () => {
     if (currentStep === 0) {
-      // Validate credentials step
-      const fields = registrationSteps[0].fields;
+      const fields = registrationSteps[0].fields as readonly string[];
       const isValid = await registerForm.trigger(fields as any);
-      if (isValid) {
-        setCurrentStep(prev => prev + 1);
-      }
+      if (isValid) setCurrentStep((prev) => prev + 1);
     }
   };
 
@@ -168,17 +178,20 @@ export default function AuthPage() {
     if (step.type === "credentials") {
       return (
         <Box>
-          <Typography variant="h5" gutterBottom>
+          <Typography variant="h6" sx={{ fontWeight: 600, mb: 0.5 }}>
             {step.title}
           </Typography>
-          <Grid container spacing={2} sx={{ mt: 2 }}>
+          <Typography variant="body2" color="text.secondary" sx={{ mb: 2.5 }}>
+            Step {currentStep + 1} of {registrationSteps.length}
+          </Typography>
+          <Grid container spacing={2}>
             <Grid item xs={12}>
               <TextField
                 fullWidth
                 label="Email"
                 type="email"
                 error={!!registerForm.formState.errors.email}
-                helperText={registerForm.formState.errors.email?.message}
+                helperText={registerForm.formState.errors.email?.message as string}
                 {...registerForm.register("email")}
               />
             </Grid>
@@ -188,34 +201,34 @@ export default function AuthPage() {
                 label="Password"
                 type="password"
                 error={!!registerForm.formState.errors.password}
-                helperText={registerForm.formState.errors.password?.message}
+                helperText={registerForm.formState.errors.password?.message as string}
                 {...registerForm.register("password")}
               />
             </Grid>
             <Grid item xs={12} sm={6}>
               <TextField
                 fullWidth
-                label="First Name"
+                label="First name"
                 error={!!registerForm.formState.errors.firstName}
-                helperText={registerForm.formState.errors.firstName?.message}
+                helperText={registerForm.formState.errors.firstName?.message as string}
                 {...registerForm.register("firstName")}
               />
             </Grid>
             <Grid item xs={12} sm={6}>
               <TextField
                 fullWidth
-                label="Last Name"
+                label="Last name"
                 error={!!registerForm.formState.errors.lastName}
-                helperText={registerForm.formState.errors.lastName?.message}
+                helperText={registerForm.formState.errors.lastName?.message as string}
                 {...registerForm.register("lastName")}
               />
             </Grid>
             <Grid item xs={12}>
               <TextField
                 fullWidth
-                label="Company Name"
+                label="Company"
                 error={!!registerForm.formState.errors.companyName}
-                helperText={registerForm.formState.errors.companyName?.message}
+                helperText={registerForm.formState.errors.companyName?.message as string}
                 {...registerForm.register("companyName")}
               />
             </Grid>
@@ -223,6 +236,7 @@ export default function AuthPage() {
               <Button
                 fullWidth
                 variant="contained"
+                size="large"
                 onClick={handleNextStep}
                 disabled={isLoading}
               >
@@ -234,13 +248,15 @@ export default function AuthPage() {
       );
     }
 
-    // Card-based selection steps
     return (
       <Box>
-        <Typography variant="h5" gutterBottom>
+        <Typography variant="h6" sx={{ fontWeight: 600, mb: 0.5 }}>
           {step.title}
         </Typography>
-        <Grid container spacing={3} sx={{ mt: 2 }}>
+        <Typography variant="body2" color="text.secondary" sx={{ mb: 2.5 }}>
+          Step {currentStep + 1} of {registrationSteps.length}
+        </Typography>
+        <Grid container spacing={2}>
           {step.options?.map((option) => (
             <Grid item xs={12} sm={6} key={option.id}>
               <SelectionCard
@@ -255,8 +271,8 @@ export default function AuthPage() {
         {currentStep > 0 && (
           <Button
             variant="outlined"
-            onClick={() => setCurrentStep(prev => prev - 1)}
-            sx={{ mt: 4 }}
+            onClick={() => setCurrentStep((prev) => prev - 1)}
+            sx={{ mt: 3 }}
           >
             Back
           </Button>
@@ -270,11 +286,7 @@ export default function AuthPage() {
       setIsLoading(true);
       const result = await login(data);
       if (!result.ok) {
-        toast({
-          variant: "destructive",
-          title: "Login failed",
-          description: result.message,
-        });
+        toast({ variant: "destructive", title: "Login failed", description: result.message });
       } else {
         navigate("/");
       }
@@ -292,8 +304,8 @@ export default function AuthPage() {
   async function onRegister(data: any) {
     try {
       setIsLoading(true);
-      sessionStorage.setItem('registrationData', JSON.stringify(data));
-      window.location.href = '/subscribe';
+      sessionStorage.setItem("registrationData", JSON.stringify(data));
+      window.location.href = "/subscribe";
     } catch (error) {
       toast({
         variant: "destructive",
@@ -308,137 +320,262 @@ export default function AuthPage() {
   return (
     <Box
       sx={{
-        minHeight: '100vh',
-        display: 'flex',
-        flexDirection: { xs: 'column', md: 'row' },
-        backgroundColor: theme.palette.login.main,
+        minHeight: "100vh",
+        display: "flex",
+        flexDirection: { xs: "column", md: "row" },
+        backgroundColor: theme.palette.background.default,
       }}
     >
-      {/* Left side - Feature highlights */}
+      {/* Left — hero */}
       <Box
         sx={{
-          flex: 1,
-          display: { xs: 'none', md: 'flex' },
-          flexDirection: 'column',
-          justifyContent: 'center',
-          alignItems: 'center',
-          p: 4,
-          color: 'white',
+          flex: 1.1,
+          display: { xs: "none", md: "flex" },
+          flexDirection: "column",
+          justifyContent: "space-between",
+          position: "relative",
+          overflow: "hidden",
+          p: 6,
+          borderRight: `1px solid ${theme.palette.divider}`,
         }}
       >
-        <Logo sx={{ mb: 4, color: 'white' }} />
-        <Typography variant="h4" gutterBottom sx={{ fontWeight: 600 }}>
-          Welcome to Wastetraq
-        </Typography>
-        <Typography variant="body1" sx={{ mb: 6, opacity: 0.8 }}>
-          Your comprehensive waste management solution
-        </Typography>
-        <Grid container spacing={3} sx={{ maxWidth: 600 }}>
-          {featureHighlights.map((feature, index) => (
-            <Grid item xs={6} key={index}>
-              <Box sx={{ textAlign: 'center' }}>
-                <Typography variant="h1" sx={{ mb: 1 }}>{feature.icon}</Typography>
-                <Typography variant="h6" gutterBottom>{feature.title}</Typography>
-                <Typography variant="body2" sx={{ opacity: 0.8 }}>{feature.description}</Typography>
-              </Box>
-            </Grid>
-          ))}
-        </Grid>
+        {/* grid + glow background */}
+        <Box
+          aria-hidden
+          sx={{
+            position: "absolute",
+            inset: 0,
+            backgroundImage: `radial-gradient(ellipse 80% 60% at 30% 20%, ${alpha(
+              "#A855F7",
+              0.18
+            )} 0%, transparent 60%),
+              linear-gradient(${alpha("#26262F", 0.7)} 1px, transparent 1px),
+              linear-gradient(90deg, ${alpha("#26262F", 0.7)} 1px, transparent 1px)`,
+            backgroundSize: "100% 100%, 32px 32px, 32px 32px",
+            maskImage:
+              "radial-gradient(ellipse at center, rgba(0,0,0,1) 30%, rgba(0,0,0,0) 75%)",
+          }}
+        />
+
+        <Box sx={{ position: "relative", zIndex: 1 }}>
+          <Logo size={36} />
+        </Box>
+
+        <Box sx={{ position: "relative", zIndex: 1, maxWidth: 560 }}>
+          <Chip
+            label="COMPUTER VISION · WASTE INTELLIGENCE"
+            size="small"
+            sx={{
+              mb: 3,
+              fontFamily: "JetBrains Mono, ui-monospace, monospace",
+              fontSize: "0.7rem",
+              letterSpacing: "0.12em",
+              fontWeight: 600,
+              color: "primary.light",
+              backgroundColor: alpha("#A855F7", 0.1),
+              border: `1px solid ${alpha("#A855F7", 0.4)}`,
+            }}
+          />
+          <Typography
+            variant="h2"
+            sx={{
+              fontWeight: 800,
+              letterSpacing: "-0.03em",
+              lineHeight: 1.05,
+              mb: 2,
+              fontSize: { md: "2.75rem", lg: "3.25rem" },
+            }}
+          >
+            Industrial-grade vision
+            <br />
+            for the{" "}
+            <Box
+              component="span"
+              sx={{
+                background:
+                  "linear-gradient(135deg, hsl(271, 91%, 70%) 0%, hsl(292, 84%, 73%) 100%)",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+              }}
+            >
+              circular economy
+            </Box>
+            .
+          </Typography>
+          <Typography
+            variant="body1"
+            sx={{ color: "text.secondary", mb: 5, maxWidth: 480 }}
+          >
+            Track every gram of waste, every second of detection, and every
+            kilometer of haul — across every facility, in real time.
+          </Typography>
+
+          <Grid container spacing={2} sx={{ maxWidth: 540 }}>
+            {featureHighlights.map(({ title, description, Icon }) => (
+              <Grid item xs={6} key={title}>
+                <Box
+                  sx={{
+                    p: 2,
+                    border: `1px solid ${theme.palette.divider}`,
+                    borderRadius: 2,
+                    backgroundColor: alpha("#FFFFFF", 0.02),
+                    height: "100%",
+                  }}
+                >
+                  <Icon
+                    sx={{
+                      fontSize: 20,
+                      color: "primary.light",
+                      mb: 1,
+                    }}
+                  />
+                  <Typography variant="subtitle2" sx={{ fontWeight: 600, mb: 0.25 }}>
+                    {title}
+                  </Typography>
+                  <Typography variant="caption" color="text.secondary" sx={{ lineHeight: 1.45 }}>
+                    {description}
+                  </Typography>
+                </Box>
+              </Grid>
+            ))}
+          </Grid>
+        </Box>
+
+        <Box
+          sx={{
+            position: "relative",
+            zIndex: 1,
+            display: "flex",
+            alignItems: "center",
+            gap: 2,
+            color: "text.disabled",
+          }}
+        >
+          <Typography
+            variant="caption"
+            sx={{
+              fontFamily: "JetBrains Mono, ui-monospace, monospace",
+              fontSize: "0.7rem",
+              letterSpacing: "0.1em",
+            }}
+          >
+            SOC 2 · ISO 27001 · GDPR
+          </Typography>
+        </Box>
       </Box>
 
-      {/* Right side - Auth forms */}
+      {/* Right — auth */}
       <Box
         sx={{
           flex: 1,
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'center',
-          p: 4,
-          backgroundColor: 'background.paper',
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          p: { xs: 3, md: 6 },
+          backgroundColor: theme.palette.background.default,
         }}
       >
-        <Box sx={{ maxWidth: 400, mx: 'auto', width: '100%' }}>
-          <Box sx={{ display: { xs: 'block', md: 'none' }, mb: 4, textAlign: 'center' }}>
-            <Logo sx={{ color: theme.palette.login.main }} />
+        <Box sx={{ maxWidth: 420, mx: "auto", width: "100%" }}>
+          <Box sx={{ display: { xs: "block", md: "none" }, mb: 4 }}>
+            <Logo size={32} />
           </Box>
+
           <Tabs defaultValue="login" className="w-full">
-            <TabsList className="grid w-full grid-cols-2">
-              <TabsTrigger value="login">Login</TabsTrigger>
-              <TabsTrigger value="register">Register</TabsTrigger>
+            <TabsList className="grid w-full grid-cols-2 bg-surface-elevated border border-border">
+              <TabsTrigger value="login">Sign in</TabsTrigger>
+              <TabsTrigger value="register">Create account</TabsTrigger>
             </TabsList>
-            <TabsContent value="login">
+
+            <TabsContent value="login" className="mt-6">
+              <Typography variant="h5" sx={{ fontWeight: 700, mb: 0.5 }}>
+                Welcome back
+              </Typography>
+              <Typography variant="body2" color="text.secondary" sx={{ mb: 3 }}>
+                Sign in to your VisionPipe workspace.
+              </Typography>
+
               <Form {...loginForm}>
-                <form onSubmit={loginForm.handleSubmit(onLogin)} className="space-y-4">
+                <form
+                  onSubmit={loginForm.handleSubmit(onLogin)}
+                  className="space-y-4"
+                >
                   <TextField
                     fullWidth
                     label="Email"
                     type="email"
+                    autoComplete="email"
                     error={!!loginForm.formState.errors.email}
-                    helperText={loginForm.formState.errors.email?.message}
+                    helperText={loginForm.formState.errors.email?.message as string}
                     {...loginForm.register("email")}
                   />
                   <TextField
                     fullWidth
                     label="Password"
                     type="password"
+                    autoComplete="current-password"
                     error={!!loginForm.formState.errors.password}
-                    helperText={loginForm.formState.errors.password?.message}
+                    helperText={loginForm.formState.errors.password?.message as string}
                     {...loginForm.register("password")}
                   />
                   <Button
                     fullWidth
                     variant="contained"
+                    size="large"
                     type="submit"
                     disabled={isLoading}
-                    sx={{
-                      backgroundColor: theme.palette.login.main,
-                      '&:hover': {
-                        backgroundColor: alpha(theme.palette.login.main, 0.9),
-                      },
-                    }}
                   >
-                    {isLoading ? "Signing in..." : "Sign In"}
+                    {isLoading ? "Signing in…" : "Sign in"}
                   </Button>
                 </form>
               </Form>
+
               <Divider sx={{ my: 3 }}>
-                <Chip label="OR" />
+                <Typography
+                  variant="caption"
+                  sx={{
+                    color: "text.disabled",
+                    fontFamily: "JetBrains Mono, ui-monospace, monospace",
+                    letterSpacing: "0.1em",
+                  }}
+                >
+                  OR CONTINUE WITH
+                </Typography>
               </Divider>
-              <Box sx={{ display: 'flex', gap: 2, justifyContent: 'center' }}>
+
+              <Stack direction="row" spacing={1.5}>
                 <Button
+                  fullWidth
                   variant="outlined"
                   startIcon={<FaGoogle />}
-                  sx={{
-                    borderColor: theme.palette.login.main,
-                    color: theme.palette.login.main,
-                    '&:hover': {
-                      borderColor: alpha(theme.palette.login.main, 0.9),
-                      backgroundColor: alpha(theme.palette.login.main, 0.05),
-                    },
-                  }}
                 >
                   Google
                 </Button>
                 <Button
+                  fullWidth
                   variant="outlined"
                   startIcon={<FaMicrosoft />}
-                  sx={{
-                    borderColor: theme.palette.login.main,
-                    color: theme.palette.login.main,
-                    '&:hover': {
-                      borderColor: alpha(theme.palette.login.main, 0.9),
-                      backgroundColor: alpha(theme.palette.login.main, 0.05),
-                    },
-                  }}
                 >
                   Microsoft
                 </Button>
-              </Box>
+              </Stack>
             </TabsContent>
-            <TabsContent value="register">
+
+            <TabsContent value="register" className="mt-6">
               {renderRegistrationContent()}
             </TabsContent>
           </Tabs>
+
+          <Typography
+            variant="caption"
+            sx={{
+              display: "block",
+              mt: 4,
+              color: "text.disabled",
+              textAlign: "center",
+            }}
+          >
+            By continuing you agree to our Terms and Privacy Policy.
+          </Typography>
         </Box>
       </Box>
     </Box>

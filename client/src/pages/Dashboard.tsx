@@ -151,7 +151,7 @@ function Dashboard() {
       icon: <ReconciliationIcon sx={{ fontSize: 28 }} />,
       description: 'Analyze product components and recyclability',
       link: '/material-analysis',
-      color: '#04a2fe',
+      color: '#A855F7',
       bgColor: '#E6F7FF'
     },
     {
@@ -159,7 +159,7 @@ function Dashboard() {
       icon: <TrophyIcon sx={{ fontSize: 28 }} />,
       description: 'Interactive waste management training',
       link: '/training',
-      color: '#04a2fe',
+      color: '#A855F7',
       bgColor: '#E6F7FF'
     },
     {
@@ -167,7 +167,7 @@ function Dashboard() {
       icon: <LineChartIcon sx={{ fontSize: 28 }} />,
       description: 'Generate sustainability reports',
       link: '/reports',
-      color: '#04a2fe',
+      color: '#A855F7',
       bgColor: '#E6F7FF'
     }
   ];
@@ -186,9 +186,9 @@ function Dashboard() {
       yField: 'value',
       seriesField: 'type',
       smooth: true,
-      color: '#04a2fe',
+      color: '#A855F7',
       areaStyle: {
-        fill: 'l(270) 0:#ffffff 0.5:#B3E0FF 1:#04a2fe',
+        fill: 'l(270) 0:#ffffff 0.5:#C084FC 1:#A855F7',
       },
     },
     recycling: {
@@ -203,9 +203,9 @@ function Dashboard() {
       yField: 'value',
       seriesField: 'type',
       smooth: true,
-      color: '#04a2fe',
+      color: '#A855F7',
       areaStyle: {
-        fill: 'l(270) 0:#ffffff 0.5:#B3E0FF 1:#04a2fe',
+        fill: 'l(270) 0:#ffffff 0.5:#C084FC 1:#A855F7',
       },
     }
   };
@@ -287,7 +287,7 @@ function Dashboard() {
                       <XAxis dataKey="week" />
                       <YAxis />
                       <Tooltip />
-                      <Line type="monotone" dataKey="landfill" stroke="#37b5fe" name="Landfill" />
+                      <Line type="monotone" dataKey="landfill" stroke="#A855F7" name="Landfill" />
                       <Line type="monotone" dataKey="recycled" stroke="#6366F1" name="Recycled" />
                       <Line type="monotone" dataKey="repurposed" stroke="#F59E0B" name="Repurposed" />
                     </LineChart>
@@ -302,7 +302,7 @@ function Dashboard() {
           <div key="costCards">
             <Stack spacing={2}>
               <Card sx={{
-                background: 'linear-gradient(135deg, #37b5fe 0%, #0094e5 100%)',
+                background: 'linear-gradient(135deg, #A855F7 0%, #E879F9 100%)',
                 color: 'white',
                 '& .MuiCardHeader-action': {
                   margin: 0
@@ -337,7 +337,7 @@ function Dashboard() {
               </Card>
 
               <Card sx={{
-                background: 'linear-gradient(135deg, #37b5fe 0%, #0094e5 100%)',
+                background: 'linear-gradient(135deg, #A855F7 0%, #E879F9 100%)',
                 color: 'white',
                 '& .MuiCardHeader-action': {
                   margin: 0
@@ -391,8 +391,8 @@ function Dashboard() {
                         value={63}
                         text="63%"
                         styles={buildStyles({
-                          pathColor: '#37b5fe',
-                          textColor: '#37b5fe',
+                          pathColor: '#A855F7',
+                          textColor: '#A855F7',
                           trailColor: '#E5E7EB',
                         })}
                       />

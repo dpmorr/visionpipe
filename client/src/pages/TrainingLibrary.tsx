@@ -357,9 +357,9 @@ const trainingVideos: TrainingVideo[] = [
 ];
 
 const difficultyColors = {
-  beginner: "bg-green-100 text-green-800",
-  intermediate: "bg-blue-100 text-blue-800",
-  advanced: "bg-purple-100 text-purple-800"
+  beginner: "bg-success/15 text-success border border-success/40",
+  intermediate: "bg-accent-cyan/15 text-accent-cyan border border-accent-cyan/40",
+  advanced: "bg-primary/15 text-primary border border-primary/40"
 };
 
 function getOrganizationLogo(logo: string) {
@@ -446,7 +446,7 @@ export function TrainingLibrary() {
     <div className="container mx-auto py-8">
       <div className="mb-8">
         <h1 className="text-3xl font-bold mb-2">Circular Strategy Training</h1>
-        <p className="text-gray-600">
+        <p className="text-muted-foreground">
           Access our library of training videos to learn about implementing circular economy strategies in your business.
         </p>
       </div>
@@ -494,7 +494,7 @@ export function TrainingLibrary() {
                 <Badge variant="secondary">{video.category}</Badge>
               </div>
               <h3 className="text-lg font-semibold mb-2">{video.title}</h3>
-              <p className="text-gray-600 text-sm mb-4">{video.description}</p>
+              <p className="text-muted-foreground text-sm mb-4">{video.description}</p>
 
               {/* Industry tags */}
               <div className="flex flex-wrap gap-1 mb-4">
@@ -506,18 +506,18 @@ export function TrainingLibrary() {
               </div>
 
               {/* Author information */}
-              <div className="flex items-center gap-3 mb-4 p-3 bg-gray-50 rounded-lg">
-                <div className="text-gray-600">
+              <div className="flex items-center gap-3 mb-4 p-3 bg-surface-elevated border border-border rounded-lg">
+                <div className="text-muted-foreground">
                   {getOrganizationLogo(video.author.organizationLogo)}
                 </div>
                 <div>
                   <p className="font-medium">{video.author.name}</p>
-                  <p className="text-sm text-gray-500">{video.author.role}</p>
+                  <p className="text-sm text-muted-foreground">{video.author.role}</p>
                   <p className="text-sm font-medium text-primary">{video.author.organization}</p>
                 </div>
               </div>
 
-              <div className="flex items-center text-sm text-gray-500 gap-4">
+              <div className="flex items-center text-sm text-muted-foreground gap-4">
                 <div className="flex items-center gap-1">
                   <Clock className="h-4 w-4" />
                   {video.duration}
@@ -545,7 +545,7 @@ export function TrainingLibrary() {
 
           {!quizCompleted ? (
             <div className="space-y-4">
-              <p className="text-sm text-gray-500">
+              <p className="text-sm text-muted-foreground">
                 Question {currentQuestionIndex + 1} of {selectedVideo?.quiz.questions.length}
               </p>
               <p className="font-medium">
@@ -568,7 +568,7 @@ export function TrainingLibrary() {
             <div className="space-y-4">
               <div className="text-center">
                 <h3 className="text-2xl font-bold mb-2">Quiz Completed!</h3>
-                <p className="text-gray-600">
+                <p className="text-muted-foreground">
                   You scored {score} out of {selectedVideo?.quiz.questions.length}
                 </p>
               </div>

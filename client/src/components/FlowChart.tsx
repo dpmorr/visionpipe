@@ -220,10 +220,10 @@ const ProcessBlockNode = memo(({ data, id }: { data: ProcessBlockData; id: strin
     <Card
       sx={{
         width: 200,
-        bgcolor: '#f0f5ff',
+        bgcolor: 'hsla(188, 86%, 53%, 0.08)',
         cursor: 'pointer',
-        border: isEditing ? '2px solid #1890ff' : data.selected ? '2px solid #ff4d4f' : 
-                data.hasSettings ? '2px dotted #ccc' : undefined,
+        border: isEditing ? '2px solid hsl(188, 86%, 53%)' : data.selected ? '2px solid hsl(0, 72%, 60%)' :
+                data.hasSettings ? '2px dotted hsl(240, 7%, 22%)' : '1px solid hsl(240, 7%, 16%)',
         p: 1,
         position: 'relative'
       }}
@@ -408,10 +408,11 @@ const TransformBlockNode = memo(({ data, id }: { data: { label: string; type: st
 
   return (
     <Card
-      sx={{ 
-        width: 180, 
-        bgcolor: '#f3e5f5', 
-        cursor: 'pointer', 
+      sx={{
+        width: 180,
+        bgcolor: 'hsla(271, 91%, 65%, 0.10)',
+        border: '1px solid hsl(240, 7%, 16%)',
+        cursor: 'pointer',
         p: 1, 
         border: isEditing ? '2px solid #1890ff' : data.selected ? '2px solid #ff4d4f' : 
                 data.hasSettings ? '2px dotted #ccc' : undefined,

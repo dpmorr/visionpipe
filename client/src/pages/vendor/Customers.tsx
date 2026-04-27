@@ -197,7 +197,7 @@ export default function VendorCustomers() {
                   <TableCell>{customer.serviceType}</TableCell>
                   <TableCell>
                     <div className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium capitalize
-                      ${customer.status === 'active' ? 'bg-green-100 text-green-800' : 'bg-gray-100 text-gray-800'}`}>
+                      ${customer.status === 'active' ? 'bg-success/15 text-success border border-success/40' : 'bg-muted text-muted-foreground border border-border'}`}>
                       {customer.status}
                     </div>
                   </TableCell>
